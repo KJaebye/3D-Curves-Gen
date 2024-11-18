@@ -177,6 +177,9 @@ fig = go.Figure(data=[go.Scatter3d(x=bezier_x, y=bezier_y, z=bezier_z, mode='lin
 # 修改坐标轴样式
 fig.update_layout(
     scene=dict(
+        xaxis_dtick=.5,
+        yaxis_dtick=.5,
+        zaxis_dtick=.5,
         xaxis=dict(
             title='X',
             titlefont=dict(size=14, family='Arial, sans-serif', color='black'),
