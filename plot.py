@@ -150,7 +150,12 @@ def cubic_spline_curve(control_points, t_values):
     return list(zip(spline_x_vals, spline_y_vals, spline_z_vals))
 
 # 示例控制点
-control_points = [(0, 0, 0), (1, 2, 1), (3, 3, 3), (4, 0, 4), (5, 2, 1)]
+control_points = [(0, 0, 0), (2, 2, 1), (4, 3, 2), (6, 0, 2), (13, 2, 1)]
+x_coords, y_coords, z_coords = zip(*control_points)
+# 计算每个轴的最小值和最大值
+x_range = [min(x_coords), max(x_coords)]
+y_range = [min(y_coords), max(y_coords)]
+z_range = [min(z_coords), max(z_coords)]
 
 # 生成贝塞尔曲线的点
 t_values = np.linspace(0, 1, 100)
@@ -177,10 +182,9 @@ fig = go.Figure(data=[go.Scatter3d(x=bezier_x, y=bezier_y, z=bezier_z, mode='lin
 # 修改坐标轴样式
 fig.update_layout(
     scene=dict(
-        xaxis_dtick=.5,
-        yaxis_dtick=.5,
-        zaxis_dtick=.5,
+        aspectmode='data',
         xaxis=dict(
+            # tickmode='auto',
             title='X',
             titlefont=dict(size=14, family='Arial, sans-serif', color='black'),
             tickfont=dict(size=12, family='Arial, sans-serif', color='black'),
@@ -190,6 +194,7 @@ fig.update_layout(
             zerolinecolor='gray'
         ),
         yaxis=dict(
+            # tickmode='auto',
             title='Y',
             titlefont=dict(size=14, family='Arial, sans-serif', color='black'),
             tickfont=dict(size=12, family='Arial, sans-serif', color='black'),
@@ -199,6 +204,7 @@ fig.update_layout(
             zerolinecolor='gray'
         ),
         zaxis=dict(
+            # tickmode='auto',
             title='Z',
             titlefont=dict(size=14, family='Arial, sans-serif', color='black'),
             tickfont=dict(size=12, family='Arial, sans-serif', color='black'),
